@@ -127,8 +127,11 @@ process {
     Write-Log -Object "SQLConfig" -Message "Enabled SID500 Administator account" -Severity Information -LogPath $LogPath
 
     # Format Drives
-    Format-Volume -DriveLetter $data_drive_letter -FileSystem NTFS -NewFileSystemLabel Data -AllocationUnitSize 65536 -Force
-    Format-Volume -DriveLetter $log_drive_letter -FileSystem NTFS -NewFileSystemLabel Log -AllocationUnitSize 65536 -Force
+    $dataVol = Get-Volume -DriveLetter $data_drive_letter
+    Format-Volume -DriveLetter $dataVol.DriveLetter -FileSystem NTFS -NewFileSystemLabel $dataVol.FileSystemLabel -AllocationUnitSize 65536 -Force
+
+    $logVol = Get-Volume -DriveLetter $log_drive_letter
+    Format-Volume -DriveLetter $log_drive_letter -FileSystem NTFS -NewFileSystemLabel $dlogVol.FileSystemLabel -AllocationUnitSize 65536 -Force
     
     # create script file
     $script = @"
