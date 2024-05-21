@@ -10,7 +10,15 @@ Param (
 
     [Parameter(Mandatory = $true)]
     [ValidateNotNullorEmpty()] 
-    [string] $pw
+    [string] $pw,
+
+    [Parameter(Mandatory = $true)]
+    [ValidateNotNullorEmpty()] 
+    [string] $data_drive_letter,
+
+    [Parameter(Mandatory = $true)]
+    [ValidateNotNullorEmpty()] 
+    [string] $log_drive_letter
 )
 
 begin {
@@ -119,8 +127,8 @@ process {
     Write-Log -Object "SQLConfig" -Message "Enabled SID500 Administator account" -Severity Information -LogPath $LogPath
 
     # Format Drives
-    Format-Volume -DriveLetter F -FileSystem NTFS -NewFileSystemLabel Data -AllocationUnitSize 65536 -Force
-    Format-Volume -DriveLetter L -FileSystem NTFS -NewFileSystemLabel Log -AllocationUnitSize 65536 -Force
+    Format-Volume -DriveLetter $data_drive_letter -FileSystem NTFS -NewFileSystemLabel Data -AllocationUnitSize 65536 -Force
+    Format-Volume -DriveLetter $log_drive_letter -FileSystem NTFS -NewFileSystemLabel Log -AllocationUnitSize 65536 -Force
     
     # create script file
     $script = @"
@@ -129,8 +137,8 @@ begin {
     `$LogPath = "$LogPath"
 
     # Set the default data and log directories, and Server Instance
-    `$dataDir = "F:\DATA"
-    `$logDir = "L:\LOG"
+    `$dataDir = "$($data_drive_letter):\DATA"
+    `$logDir = "$($log_drive_letter):\LOG"
     `$serverInstance = 'localhost'
 
     `$regPath = "HKLM:\SOFTWARE\Microsoft\Microsoft SQL Server"
