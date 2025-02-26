@@ -5,19 +5,19 @@
 
 Param (
     [Parameter(Mandatory = $true)]
-    [ValidateNotNullorEmpty()]
+    [ValidateNotNullOrEmpty()]
     [string] $adminUsername,
 
     [Parameter(Mandatory = $true)]
-    [ValidateNotNullorEmpty()]
+    [ValidateNotNullOrEmpty()]
     [string] $pw,
 
     [Parameter(Mandatory = $true)]
-    [ValidateNotNullorEmpty()]
+    [ValidateNotNullOrEmpty()]
     [string] $data_drive_letter,
 
     [Parameter(Mandatory = $true)]
-    [ValidateNotNullorEmpty()]
+    [ValidateNotNullOrEmpty()]
     [string] $log_drive_letter
 )
 
@@ -124,7 +124,7 @@ process {
 
     # Enable Built-in Administrator Account
     Enable-LocalUser -SID (Get-LocalUser | Where-Object { $_.SID -like 'S-1-5-*-500' }).Sid.Value
-    Write-Log -Object "SQLConfig" -Message "Enabled SID500 Administator account" -Severity Information -LogPath $LogPath
+    Write-Log -Object "SQLConfig" -Message "Enabled SID500 Administrator account" -Severity Information -LogPath $LogPath
 
     # Format Drives
     $dataVol = Get-Volume -DriveLetter $data_drive_letter
@@ -651,5 +651,5 @@ end {
 
     # Disable Built-in Administrator Account
     Disable-LocalUser -SID (Get-LocalUser | Where-Object { $_.SID -like 'S-1-5-*-500' }).Sid.Value
-    Write-Log -Object "SQLConfig" -Message "Disabled SID500 Administator account" -Severity Information -LogPath $LogPath
+    Write-Log -Object "SQLConfig" -Message "Disabled SID500 Administrator account" -Severity Information -LogPath $LogPath
 }
