@@ -32,7 +32,6 @@ jobs:
         uses: commitizen-tools/commitizen-action@master
         with:
           github_token: ${{ steps.generate-token.outputs.token }}
-          changelog_increment_filename: CHANGELOG.md
 
       - name: Release
         uses: softprops/action-gh-release@v1
