@@ -30,7 +30,8 @@ jobs:
       - id: cz
         name: Create bump and changelog
         uses: commitizen-tools/commitizen-action@master
-        with:
-          github_token: ${{ steps.generate-token.outputs.token }}
+        env:
+          GH_TOKEN: ${{ steps.generate-token.outputs.token }}
+
       - name: Print Version
         run: echo "Bumped to version ${{ steps.cz.outputs.version }}"
