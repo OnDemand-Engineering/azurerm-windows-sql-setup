@@ -653,3 +653,5 @@ end {
     Disable-LocalUser -SID (Get-LocalUser | Where-Object { $_.SID -like 'S-1-5-*-500' }).Sid.Value
     Write-Log -Object "SQLConfig" -Message "Disabled SID500 Administrator account" -Severity Information -LogPath $LogPath
 }
+
+# test 2
