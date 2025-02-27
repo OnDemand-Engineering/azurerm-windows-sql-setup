@@ -654,4 +654,4 @@ end {
     Write-Log -Object "SQLConfig" -Message "Disabled SID500 Administrator account" -Severity Information -LogPath $LogPath
 }
 
-# test 2
+# test
