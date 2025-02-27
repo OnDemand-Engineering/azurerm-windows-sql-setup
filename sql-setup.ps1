@@ -131,7 +131,7 @@ process {
     Format-Volume -DriveLetter $dataVol.DriveLetter -FileSystem NTFS -NewFileSystemLabel $dataVol.FileSystemLabel -AllocationUnitSize 65536 -Force
 
     $logVol = Get-Volume -DriveLetter $log_drive_letter
-    Format-Volume -DriveLetter $log_drive_letter -FileSystem NTFS -NewFileSystemLabel $dlogVol.FileSystemLabel -AllocationUnitSize 65536 -Force
+    Format-Volume -DriveLetter $log_drive_letter -FileSystem NTFS -NewFileSystemLabel $logVol.FileSystemLabel -AllocationUnitSize 65536 -Force
 
     # create script file
     $script = @"
