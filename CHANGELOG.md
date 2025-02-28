@@ -1,3 +1,9 @@
+## v0.1.2 (2025-02-28)
+
+### Fix
+
+- update condition for bump version job in workflow (#22)
+
 ## v0.1.1 (2025-02-28)
 
 ### Fix
