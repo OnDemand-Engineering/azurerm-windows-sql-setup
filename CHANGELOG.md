@@ -1,3 +1,9 @@
+## v0.1.1 (2025-02-28)
+
+### Fix
+
+- format tag name in bumpversion workflow (#21)
+
 ## v0.1.0 (2025-02-27)
 
 ### Feat
